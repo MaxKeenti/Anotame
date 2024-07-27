@@ -1,6 +1,6 @@
 import { Card, Col, Row, Image } from 'react-bootstrap';
 import CustH1 from '../../CustH1a/CustH1';
-import '../../../../assets/El-Hilvan_logo.svg';
+import Logo from '/El-Hilvan_logo.svg';
 import './CustLogoCard.css';
 
 function CustLogoCard() {
@@ -9,7 +9,7 @@ function CustLogoCard() {
             <Card.Body>
                 <Row className="align-items-center">
                     <Col xs={12} md="auto">
-                        <Image className="ElHilvanLogo" src="src/assets/El-Hilvan_logo.svg" />
+                        <Image className="ElHilvanLogo" src={Logo} />
                     </Col>
                     <Col xs={12} md="auto">
                         <CustH1>
