@@ -1,6 +1,6 @@
 import { Card, Col, Row, Image } from 'react-bootstrap';
-import CustH1 from '../CustH1a/CustH1';
-import '../../../assets/El-Hilvan_logo.svg';
+import CustH1 from '../../CustH1a/CustH1';
+import '../../../../assets/El-Hilvan_logo.svg';
 import './CustLogoCard.css';
 
 function CustLogoCard() {
@@ -13,7 +13,7 @@ function CustLogoCard() {
                     </Col>
                     <Col xs={12} md="auto">
                         <CustH1>
-                            El Hilván
+                            EL HILVÁN
                         </CustH1>
                     </Col>
                 </Row>
