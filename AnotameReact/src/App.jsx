@@ -1,33 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import CustNavTabs from './app-modules/customized-elements/CustCards/CustNavCard/CustNavCard';
+import CustLogoCard from './app-modules/customized-elements/CustCards/CustLogoCard/CustLogoCard';
+import { Col, Container, Row } from 'react-bootstrap';
+import CustH1 from './app-modules/customized-elements/CustH1a/CustH1';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Container>
+        <Row>
+          <Col xs={12} md={12} className="mb-4"> {/* mb-4 adds margin-bottom */}
+            <CustLogoCard />
+          </Col>
+          <Col xs={12} md={12}>
+            <CustNavTabs>
+              <CustH1>CREAR NOTA</CustH1>
+            </CustNavTabs>
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }
