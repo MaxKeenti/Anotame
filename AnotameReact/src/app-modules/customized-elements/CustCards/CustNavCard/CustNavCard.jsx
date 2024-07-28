@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import ClientDataForm from '../../../ClientData/ClientDataForm';
 import PaymentDataForm from '../../../PaymentData/PaymentDataForm';
+import GarmentDataForm from '../../../GarmentData/GarmentDataForm';
 import './CustNavCard.css';
 import { FaUser, FaTshirt, FaMoneyBill } from "react-icons/fa";
 
@@ -48,7 +49,7 @@ function CustNavTabs({ children }) {
       </Card.Header>
       <Card.Body>
         {activeTab === 'first' && <ClientDataForm handleNextTab={handleNextTab} />}
-        {activeTab === 'second' && <div>Prenda goes here</div>}
+        {activeTab === 'second' && <GarmentDataForm handleNextTab={handleNextTab} />}
         {activeTab === 'third' && <PaymentDataForm handleNextTab={handleNextTab} />}
       </Card.Body>
     </Card>
