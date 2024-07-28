@@ -178,7 +178,7 @@ function GarmentDataForm({ handleNextTab }) {
                             value={arreglo}
                             onChange={(e) => handleArregloChange(index, e)}
                         />
-                        <Button variant="danger" onClick={() => handleRemoveArreglo(index)}>Eliminar</Button>
+                        <Button className="mt-3 mb-3" variant="danger" onClick={() => handleRemoveArreglo(index)}>Eliminar</Button>
                     </Form.Group>
                 ))}
             </Row>
