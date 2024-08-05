@@ -14,10 +14,13 @@ function App() {
           <Col xs={12} md={12} className="mb-4"> {/* mb-4 adds margin-bottom */}
             <CustLogoCard />
           </Col>
-          <Col xs={12} md={12}>
+          <Col xs={12} md={12} className="mb-4">
             <CustNavTabs>
               <CustH1>CREAR NOTA</CustH1>
             </CustNavTabs>
+          </Col>
+          <Col xs={12} md={12}>
+            <CustLogoCard />
           </Col>
         </Row>
       </Container>

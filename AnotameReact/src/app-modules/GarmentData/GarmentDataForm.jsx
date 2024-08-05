@@ -215,7 +215,7 @@ function GarmentDataForm({ handleNextTab }) {
             <Button type="button" onClick={handleAddGarment}>
                 {isEditing ? 'Guardar cambios' : 'Agregar a las prendas'}
             </Button>
-            <Table striped bordered hover className="mt-3">
+            <Table responsive striped bordered hover className="mt-3">
                 <thead>
                     <tr>
                         <th>Cantidad</th>
