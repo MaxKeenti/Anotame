@@ -39,10 +39,45 @@ function formReducer(state, action) {
             return { ...state, garmentData: { ...state.garmentData, ...action.payload } };
         case 'ADD_SUBMITTED_DATA':
             return { ...state, submittedData: [...state.submittedData, action.payload] };
+        case 'ADD_GARMENT':
+            const updatedGarments = [...state.garmentData.garments, action.payload];
+            const updatedGarmentCosts = updatedGarments.reduce((total, garment) => total + garment.garmentRepairAmount, 0);
+            return {
+                ...state,
+                garmentData: {
+                    ...state.garmentData,
+                    garments: updatedGarments,
+                    garmentCosts: updatedGarmentCosts,
+                },
+            };
+        case 'UPDATE_GARMENT':
+            const updatedGarmentsList = state.garmentData.garments.map((garment, index) =>
+                index === action.payload.index ? action.payload.garment : garment
+            );
+            const updatedCosts = updatedGarmentsList.reduce((total, garment) => total + garment.garmentRepairAmount, 0);
+            return {
+                ...state,
+                garmentData: {
+                    ...state.garmentData,
+                    garments: updatedGarmentsList,
+                    garmentCosts: updatedCosts,
+                },
+            };
+        case 'DELETE_GARMENT':
+            const filteredGarments = state.garmentData.garments.filter((_, index) => index !== action.payload);
+            const filteredGarmentCosts = filteredGarments.reduce((total, garment) => total + garment.garmentRepairAmount, 0);
+            return {
+                ...state,
+                garmentData: {
+                    ...state.garmentData,
+                    garments: filteredGarments,
+                    garmentCosts: filteredGarmentCosts,
+                },
+            };
         default:
             return state;
     }
-}
+};
 
 const FormContext = createContext();
 

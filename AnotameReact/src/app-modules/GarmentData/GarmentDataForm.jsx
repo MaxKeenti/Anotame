@@ -54,7 +54,7 @@ function GarmentDataForm({ handleNextTab }) {
     const handleRemoveArreglo = (index) => {
         const newArreglos = state.garmentData.garmentRepair.filter((_, i) => i !== index);
         dispatch({
-            type: 'SET_GARMENT_DATA',
+            type: 'DELETE_GARMENT',
             payload: { garmentRepair: newArreglos },
         });
     };
