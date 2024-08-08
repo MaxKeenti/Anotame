@@ -59,18 +59,13 @@ function GarmentDataForm({ handleNextTab }) {
         });
     };
 
-    const handleAddGarment = (event, targetTable) => {
+    const handleAddGarment = (event) => {
         event.preventDefault();
-        console.log('Button clicked'); // Debug log
-        console.log('handleAddGarment called with targetTable:', targetTable); // Debug log
-
         if (isEditing) {
-            console.log('Updating garment'); // Debug log
             dispatch({
                 type: 'UPDATE_GARMENT',
                 payload: {
                     index: editIndex,
-                    targetTable: targetTable,
                     garment: {
                         garmentQuantity: state.garmentData.garmentQuantity,
                         garmentType: state.garmentData.garmentType,
@@ -84,11 +79,9 @@ function GarmentDataForm({ handleNextTab }) {
             setIsEditing(false);
             setEditIndex(null);
         } else {
-            console.log('Adding garment'); // Debug log
             dispatch({
                 type: 'ADD_GARMENT',
                 payload: {
-                    targetTable: targetTable,
                     garmentQuantity: state.garmentData.garmentQuantity,
                     garmentType: state.garmentData.garmentType,
                     garmentRepair: state.garmentData.garmentRepair,
@@ -109,8 +102,6 @@ function GarmentDataForm({ handleNextTab }) {
                 garmentRepairAmount: 0,
             },
         });
-
-        setValidated(true);
     };
 
     const handleEditGarment = (index) => {
@@ -138,22 +129,18 @@ function GarmentDataForm({ handleNextTab }) {
         } else {
             event.preventDefault();
             dispatch({
-                type: 'ADD_SUBMITTED_DATA',
-                payload: state.garmentData,
+                type: 'ADD_SUBMITTED_GARMENT_DATA',
+                payload: {
+                    garments: [...state.garmentData.garments],
+                    garmentCosts: state.garmentData.garmentCosts,
+                },
             });
             handleNextTab();
         }
-
+    
         setValidated(true);
     };
-
-    const handleCheckboxChange = (event) => {
-        const { id, checked } = event.target;
-        dispatch({
-            type: 'SET_GARMENT_DATA',
-            payload: { [id]: checked },
-        });
-    };
+    
 
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -219,11 +206,11 @@ function GarmentDataForm({ handleNextTab }) {
                     />
                 </Form.Group>
             </Row>
-            <Button onClick={(event) => handleAddGarment(event, 'garmentEditingTable')}>
+            <Button onClick={(event) => handleAddGarment(event,)}>
                 {isEditing ? 'Guardar cambios' : 'Agregar a las prendas'}
             </Button>
             <Row className="mb-3">
-                <Table responsive striped bordered hover id="garmentEditingTable" className="mt-3">
+                <Table responsive striped bordered hover className="mt-3">
                     <thead>
                         <tr>
                             <th>Cantidad</th>

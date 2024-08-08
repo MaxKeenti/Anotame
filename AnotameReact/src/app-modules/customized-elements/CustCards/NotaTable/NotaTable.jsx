@@ -9,88 +9,91 @@ function NotaTable({ children }) {
         <Card>
             <Card.Body>
                 {children}
-                <Table responsive striped bordered hover className="mb-4">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido Paterno</th>
-                            <th>Apellido Materno</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {state.submittedData.map((data, index) => (
-                            <tr key={index}>
-                                <td>{data.clientName}</td>
-                                <td>{data.clientFirstLastName}</td>
-                                <td>{data.clientSecondLastName}</td>
+                {state.submittedData.clientData && (
+                    <Table responsive striped bordered hover className="mb-4">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido Paterno</th>
+                                <th>Apellido Materno</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </Table>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{state.submittedData.clientData.clientName}</td>
+                                <td>{state.submittedData.clientData.clientFirstLastName}</td>
+                                <td>{state.submittedData.clientData.clientSecondLastName}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                )}
 
-                <Table responsive striped bordered hover className="mb-4">
-                    <thead>
-                        <tr>
-                            <th>Número de teléfono</th>
-                            <th>Folio</th>
-                            <th>Fecha de Recepción</th>
-                            <th>Fecha y Hora de Entrega</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {state.submittedData.map((data, index) => (
-                            <tr key={index}>
-                                <td>{data.telefonNumber}</td>
-                                <td>{data.folio}</td>
-                                <td>{data.receivedDate}</td>
-                                <td>{data.deliveryDate}</td>
+                {state.submittedData.clientData && (
+                    <Table responsive striped bordered hover className="mb-4">
+                        <thead>
+                            <tr>
+                                <th>Número de teléfono</th>
+                                <th>Folio</th>
+                                <th>Fecha de Recepción</th>
+                                <th>Fecha y Hora de Entrega</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </Table>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{state.submittedData.clientData.telefonNumber}</td>
+                                <td>{state.submittedData.clientData.folio}</td>
+                                <td>{state.submittedData.clientData.receivedDate}</td>
+                                <td>{state.submittedData.clientData.deliveryDate}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                )}
 
-                <Table responsive striped bordered hover className="mb-4">
-                    <thead>
-                        <tr>
-                            <th>Cantidad</th>
-                            <th>Prenda</th>
-                            <th>Arreglos</th>
-                            <th>Descripción</th>
-                            <th>Precio</th>
-                            <th>Importe</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {state.submittedData.map((data, index) => (
-                            <tr key={index}>
-                                <td>{data.garmentType}</td>
-                                <td>{data.garmentDescription}</td>
-                                <td>{data.garmentQuantity}</td>
-                                <td>{data.garmentRepairCost}</td>
-                                <td>{data.garmentRepairAmount}</td>
+                {state.submittedData.garmentData && (
+                    <Table responsive striped bordered hover className="mb-4">
+                        <thead>
+                            <tr>
+                                <th>Cantidad</th>
+                                <th>Prenda</th>
+                                <th>Arreglos</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Importe</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </Table>
+                        </thead>
+                        <tbody>
+                            {state.submittedData.garmentData.garments.map((garment, garmentIndex) => (
+                                <tr key={garmentIndex}>
+                                    <td>{garment.garmentQuantity}</td>
+                                    <td>{garment.garmentType}</td>
+                                    <td>{garment.garmentRepair.join(', ')}</td>
+                                    <td>{garment.garmentDescription}</td>
+                                    <td>{garment.garmentRepairCost}</td>
+                                    <td>{garment.garmentRepairAmount}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                )}
 
-                <Table responsive striped bordered hover className="mb-4">
-                    <thead>
-                        <tr>
-                            <th>¿Saldado?</th>
-                            <th>¿A cuenta?</th>
-                            <th>Método de Pago</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {state.submittedData.map((data, index) => (
-                            <tr key={index}>
-                                <td>{data.paymentMethod}</td>
-                                <td>{data.amountLeft}</td>
-                                <td>{data.paidInFull ? 'Sí' : 'No'}</td>
+                {state.submittedData.paymentData && (
+                    <Table responsive striped bordered hover className="mb-4">
+                        <thead>
+                            <tr>
+                                <th>¿Saldado?</th>
+                                <th>¿A cuenta?</th>
+                                <th>Método de Pago</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </Table>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{state.submittedData.paymentData.paidInFull ? 'Sí' : 'No'}</td>
+                                <td>{state.submittedData.paymentData.amountLeft}</td>
+                                <td>{state.submittedData.paymentData.paymentMethod}</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                )}
             </Card.Body>
         </Card>
     );

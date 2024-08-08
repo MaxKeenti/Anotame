@@ -26,7 +26,11 @@ const initialState = {
         garments: [],
         garmentCosts: 0,
     },
-    submittedData: [], // State to hold submitted form data
+    submittedData: {
+        clientData: null,
+        paymentData: null,
+        garmentData: null,
+    },
 };
 
 function formReducer(state, action) {
@@ -37,8 +41,12 @@ function formReducer(state, action) {
             return { ...state, paymentData: { ...state.paymentData, ...action.payload } };
         case 'SET_GARMENT_DATA':
             return { ...state, garmentData: { ...state.garmentData, ...action.payload } };
-        case 'ADD_SUBMITTED_DATA':
-            return { ...state, submittedData: [...state.submittedData, action.payload] };
+        case 'ADD_SUBMITTED_CLIENT_DATA':
+            return { ...state, submittedData: { ...state.submittedData, clientData: action.payload } };
+        case 'ADD_SUBMITTED_PAYMENT_DATA':
+            return { ...state, submittedData: { ...state.submittedData, paymentData: action.payload } };
+        case 'ADD_SUBMITTED_GARMENT_DATA':
+            return { ...state, submittedData: { ...state.submittedData, garmentData: action.payload } };
         case 'ADD_GARMENT':
             const updatedGarments = [...state.garmentData.garments, action.payload];
             const updatedGarmentCosts = updatedGarments.reduce((total, garment) => total + garment.garmentRepairAmount, 0);

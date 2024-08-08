@@ -21,19 +21,19 @@ function PaymentDataForm({ handleNextTab }) {
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
     } else {
-      event.preventDefault();
-      dispatch({
-        type: 'ADD_SUBMITTED_DATA',
-        payload: state.paymentData,
-      });
-      handleNextTab();
+        event.preventDefault();
+        dispatch({
+            type: 'ADD_SUBMITTED_PAYMENT_DATA',
+            payload: state.paymentData,
+        });
+        handleNextTab();
     }
 
     setValidated(true);
-  };
+};
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>

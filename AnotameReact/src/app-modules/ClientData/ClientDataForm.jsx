@@ -41,14 +41,15 @@ function ClientDataForm({ handleNextTab }) {
         } else {
             event.preventDefault();
             dispatch({
-                type: 'ADD_SUBMITTED_DATA',
+                type: 'ADD_SUBMITTED_CLIENT_DATA',
                 payload: state.clientData,
             });
             handleNextTab();
         }
-
+    
         setValidated(true);
     };
+    
 
     return (
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
