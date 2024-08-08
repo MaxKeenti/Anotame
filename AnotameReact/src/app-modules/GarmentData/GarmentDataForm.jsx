@@ -134,11 +134,15 @@ function GarmentDataForm({ handleNextTab }) {
             event.stopPropagation();
         } else {
             event.preventDefault();
+            dispatch({
+                type: 'ADD_SUBMITTED_DATA',
+                payload: state.garmentData,
+            });
             handleNextTab();
         }
-
+    
         setValidated(true);
-    };
+    };    
 
     const handleCheckboxChange = (event) => {
         const { id, checked } = event.target;
@@ -215,35 +219,38 @@ function GarmentDataForm({ handleNextTab }) {
             <Button type="button" onClick={handleAddGarment}>
                 {isEditing ? 'Guardar cambios' : 'Agregar a las prendas'}
             </Button>
-            <Table responsive striped bordered hover className="mt-3">
-                <thead>
-                    <tr>
-                        <th>Cantidad</th>
-                        <th>Prenda</th>
-                        <th>Arreglos</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Importe</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {state.garmentData.garments.map((garment, index) => (
-                        <tr key={index}>
-                            <td>{garment.garmentQuantity}</td>
-                            <td>{garment.garmentType}</td>
-                            <td>{garment.garmentRepair.join(', ')}</td>
-                            <td>{garment.garmentDescription}</td>
-                            <td>{garment.garmentRepairCost}</td>
-                            <td>{garment.garmentRepairAmount}</td>
-                            <td>
-                                <Button variant="warning" onClick={() => handleEditGarment(index)}>Editar</Button>{' '}
-                                <Button variant="danger" onClick={() => handleDeleteGarment(index)}>Eliminar</Button>
-                            </td>
+            <Row className="mb-3">
+                <Table responsive striped bordered hover className="garmentTempData mt-3">
+                    <thead>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Prenda</th>
+                            <th>Arreglos</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Importe</th>
+                            <th>Acciones</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody>
+                        {state.garmentData.garments.map((garment, index) => (
+                            <tr key={index}>
+                                <td>{garment.garmentQuantity}</td>
+                                <td>{garment.garmentType}</td>
+                                <td>{garment.garmentRepair.join(', ')}</td>
+                                <td>{garment.garmentDescription}</td>
+                                <td>{garment.garmentRepairCost}</td>
+                                <td>{garment.garmentRepairAmount}</td>
+                                <td>
+                                    <Button variant="warning" onClick={() => handleEditGarment(index)}>Editar</Button>{' '}
+                                    <Button variant="danger" onClick={() => handleDeleteGarment(index)}>Eliminar</Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </Row>
+
             <Form.Group as={Col} md="4" controlId="garmentCosts" className="mt-3">
                 <Form.Label>Total Costos</Form.Label>
                 <Form.Control

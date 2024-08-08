@@ -4,6 +4,7 @@ import CustNavTabs from './app-modules/customized-elements/CustCards/CustNavCard
 import CustLogoCard from './app-modules/customized-elements/CustCards/CustLogoCard/CustLogoCard';
 import { Col, Container, Row } from 'react-bootstrap';
 import CustH1 from './app-modules/customized-elements/CustH1a/CustH1';
+import NotaTable from './app-modules/customized-elements/CustCards/NotaTable/NotaTable';
 
 function App() {
 
@@ -20,7 +21,9 @@ function App() {
             </CustNavTabs>
           </Col>
           <Col xs={12} md={12}>
-            <CustLogoCard />
+            <NotaTable>
+              <CustH1>IMPRIMIR NOTA</CustH1>
+            </NotaTable>
           </Col>
         </Row>
       </Container>

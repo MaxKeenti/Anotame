@@ -25,6 +25,10 @@ function PaymentDataForm({ handleNextTab }) {
       event.stopPropagation();
     } else {
       event.preventDefault();
+      dispatch({
+        type: 'ADD_SUBMITTED_DATA',
+        payload: state.paymentData,
+      });
       handleNextTab();
     }
 

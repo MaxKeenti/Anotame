@@ -26,69 +26,19 @@ const initialState = {
         garments: [],
         garmentCosts: 0,
     },
+    submittedData: [], // State to hold submitted form data
 };
 
 function formReducer(state, action) {
     switch (action.type) {
         case 'SET_CLIENT_DATA':
-            return {
-                ...state,
-                clientData: {
-                    ...state.clientData,
-                    ...action.payload,
-                },
-            };
+            return { ...state, clientData: { ...state.clientData, ...action.payload } };
         case 'SET_PAYMENT_DATA':
-            return {
-                ...state,
-                paymentData: {
-                    ...state.paymentData,
-                    ...action.payload,
-                },
-            };
+            return { ...state, paymentData: { ...state.paymentData, ...action.payload } };
         case 'SET_GARMENT_DATA':
-            return {
-                ...state,
-                garmentData: {
-                    ...state.garmentData,
-                    ...action.payload,
-                },
-            };
-        case 'ADD_GARMENT':
-            const updatedGarments = [...state.garmentData.garments, action.payload];
-            const updatedGarmentCosts = updatedGarments.reduce((total, garment) => total + garment.garmentRepairAmount, 0);
-            return {
-                ...state,
-                garmentData: {
-                    ...state.garmentData,
-                    garments: updatedGarments,
-                    garmentCosts: updatedGarmentCosts,
-                },
-            };
-        case 'UPDATE_GARMENT':
-            const updatedGarmentsList = state.garmentData.garments.map((garment, index) =>
-                index === action.payload.index ? action.payload.garment : garment
-            );
-            const updatedCosts = updatedGarmentsList.reduce((total, garment) => total + garment.garmentRepairAmount, 0);
-            return {
-                ...state,
-                garmentData: {
-                    ...state.garmentData,
-                    garments: updatedGarmentsList,
-                    garmentCosts: updatedCosts,
-                },
-            };
-        case 'DELETE_GARMENT':
-            const filteredGarments = state.garmentData.garments.filter((_, index) => index !== action.payload);
-            const filteredGarmentCosts = filteredGarments.reduce((total, garment) => total + garment.garmentRepairAmount, 0);
-            return {
-                ...state,
-                garmentData: {
-                    ...state.garmentData,
-                    garments: filteredGarments,
-                    garmentCosts: filteredGarmentCosts,
-                },
-            };
+            return { ...state, garmentData: { ...state.garmentData, ...action.payload } };
+        case 'ADD_SUBMITTED_DATA':
+            return { ...state, submittedData: [...state.submittedData, action.payload] };
         default:
             return state;
     }
@@ -96,11 +46,7 @@ function formReducer(state, action) {
 
 const FormContext = createContext();
 
-export function useFormContext() {
-    return useContext(FormContext);
-}
-
-export function FormProvider({ children }) {
+export const FormProvider = ({ children }) => {
     const [state, dispatch] = useReducer(formReducer, initialState);
 
     return (
@@ -108,4 +54,6 @@ export function FormProvider({ children }) {
             {children}
         </FormContext.Provider>
     );
-}
+};
+
+export const useFormContext = () => useContext(FormContext);
